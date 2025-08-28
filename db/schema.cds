@@ -19,6 +19,7 @@ entity Recipes : cuid {
     instructions      : LargeString not null;
     preperationTime   : Integer;
     servings          : Integer;
+    source            : String(200);
 
     course            : Association to one Courses not null;
     recipeIngredients : Composition of many RecipeIngredientLink
