@@ -6,13 +6,14 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@cap-js/cds-test": "^0.4.0",
     "@cap-js/postgres": "^1",
-    "@sap/cds": "^8",
-    "@sap/xssec": "^4",
-    "express": "^4",
     "@sap-cloud-sdk/connectivity": "^3",
     "@sap-cloud-sdk/http-client": "^3",
-    "@sap-cloud-sdk/resilience": "^3"
+    "@sap-cloud-sdk/resilience": "^3",
+    "@sap/cds": "^8",
+    "@sap/xssec": "^4",
+    "express": "^4"
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.10.0",
@@ -26,22 +27,13 @@
     "watch-smart-cookbook": "cds watch --open smart-cookbook/webapp/index.html?sap-ui-xx-viewCache=false",
     "undeploy": "cf undeploy smart-cookbook --delete-services --delete-service-keys --delete-service-brokers",
     "build": "rimraf resources mta_archives && mbt build --mtar archive",
-    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "test": "npx jest tests/test.js"
   },
   "cds": {
     "requires": {
       "destinations": true,
-      "auth": "xsuaa",
-      "Northwind": {
-        "kind": "odata",
-        "model": "srv/external/Northwind",
-        "[production]": {
-          "credentials": {
-            "destination": "Northwind",
-            "url": "https://services.odata.org/Experimental/OData/OData.svc"
-          }
-        }
-      },
+      "auth": "mocked",
       "connectivity": true
     },
     "sql": {
