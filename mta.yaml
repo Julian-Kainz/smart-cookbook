@@ -27,6 +27,7 @@ modules:
       - name: smart-cookbook-destination
       - name: smart-cookbook-postgres
       - name: smart-cookbook-auth
+      - name: smart-cookbook-connectivity
 
   - name: smart-cookbook-postgres-deployer
     type: nodejs
@@ -61,3 +62,8 @@ resources:
       config:
         xsappname: smart-cookbook-${org}-${space}
         tenant-mode: dedicated
+  - name: smart-cookbook-connectivity
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: connectivity
+      service-plan: lite

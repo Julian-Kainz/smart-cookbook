@@ -9,7 +9,10 @@
     "@cap-js/postgres": "^1",
     "@sap/cds": "^8",
     "@sap/xssec": "^4",
-    "express": "^4"
+    "express": "^4",
+    "@sap-cloud-sdk/connectivity": "^3",
+    "@sap-cloud-sdk/http-client": "^3",
+    "@sap-cloud-sdk/resilience": "^3"
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.10.0",
@@ -28,7 +31,18 @@
   "cds": {
     "requires": {
       "destinations": true,
-      "auth": "mocked"
+      "auth": "xsuaa",
+      "Northwind": {
+        "kind": "odata",
+        "model": "srv/external/Northwind",
+        "[production]": {
+          "credentials": {
+            "destination": "Northwind",
+            "url": "https://services.odata.org/Experimental/OData/OData.svc"
+          }
+        }
+      },
+      "connectivity": true
     },
     "sql": {
       "native_hana_associations": false
